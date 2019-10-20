@@ -14,7 +14,18 @@ class Network(object):
         #sizes[1:] assumes that the first layer is input layer therefore removes the bias from that layer.
         self.weights = [np.random.randn(y,x) for x,y in zip(sizes[:-1],sizes[1:])]
         #np.random.randn generates Gaussian Distribution with mean 0 and standard deviation 1.
+    
+    #np.dot is a scalar multiplication of 2 vectors.
+    def feedforward(self,a):
+        for b,w in zip(self.biases, self.weights):
+            a = sigmoid(np.dot(w,a) + b)
 
-#net = Network([2,3,4])
+
+#We use np.exp instead of normal exponent function because whenever x is an vector, numpy automatically applies the sigmoid function elementwise.
+def sigmoid(x):
+    return 1.0/(1.0 + np.exp(-x))
+
+net = Network([2,3,4])
 #print(net.biases)
 #print(net.weights)
+#net.weights[1] shows the weights of all paths from layer 2 to 3. Moreover net.weights[1][2][3] shows the weight between 2nd neuron of 2nd layer and 3rd neuron of 3rd layer.
