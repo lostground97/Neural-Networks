@@ -14,3 +14,7 @@ class Network(object):
         #sizes[1:] assumes that the first layer is input layer therefore removes the bias from that layer.
         self.weights = [np.random.randn(y,x) for x,y in zip(sizes[:-1],sizes[1:])]
         #np.random.randn generates Gaussian Distribution with mean 0 and standard deviation 1.
+
+#net = Network([2,3,4])
+#print(net.biases)
+#print(net.weights)
